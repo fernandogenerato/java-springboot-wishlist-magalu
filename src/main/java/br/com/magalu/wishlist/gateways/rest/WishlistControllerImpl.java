@@ -39,19 +39,21 @@ public class WishlistControllerImpl implements WishlistController {
 
     @Override
     public ApiResponse save(String customerId, ItemRest body) {
+        log.info("save : customerId : {} , body : {}", customerId, body.toString());
         addItemUseCase.execute(customerId, itemRestConverter.mapToEntity(body));
         return ApiResponse.builder().message("Item added!").build();
     }
 
     @Override
     public ApiResponse delete(String customerId, String itemId) {
+        log.info("delete : customerId : {} , itemId : {}", customerId, itemId);
         removeUseCase.execute(customerId, itemRestConverter.mapToEntity(ItemRest.builder().productId(itemId).build()));
         return ApiResponse.builder().message("Item removed").build();
     }
 
     @Override
     public ApiResponse<List<ItemRest>> getAllByClientId(String customerId) {
-        itemRestConverter.mapToRest(getDetailsUseCase.execute(customerId));
+        log.info("getAllByClientId : customerId : {}", customerId);
         ApiResponse<List<ItemRest>> response = new ApiResponse<>();
         response.setData(itemRestConverter.mapToRest(getDetailsUseCase.execute(customerId)));
         return response;
@@ -60,6 +62,7 @@ public class WishlistControllerImpl implements WishlistController {
 
     @Override
     public ApiResponse<Boolean> verifyItemInWishlistById(String customerId, String itemId) {
+        log.info("verifyItemInWishlistById : customerId : {} , itemId : {}", customerId,itemId);
         Boolean response = verifyItemUseCase.execute(customerId, itemId);
         ApiResponse<Boolean> apiResponse = new ApiResponse<>();
         apiResponse.setMessage(response.equals(true) ? "Item exists on wishlist" : "Item does not exist on wishlist");

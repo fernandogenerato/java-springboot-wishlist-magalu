@@ -24,6 +24,7 @@ public class GetDetailsUseCaseImpl implements GetDetailsUseCase {
 
     @Override
     public List<Item> execute(String customerId) {
+        log.info("execute : customerId : {} ", customerId);
         return convertFromCollection(getCustomer(customerId).getWishList());
     }
 
@@ -42,7 +43,7 @@ public class GetDetailsUseCaseImpl implements GetDetailsUseCase {
     }
 
     private CustomerCollection getCustomer(String customerId) {
-
+        log.info("getCustomer : customerId : {} ", customerId);
         return Optional.ofNullable(mongoTemplate.findById(customerId, CustomerCollection.class))
                 .orElseThrow(() -> new CustomerNotFoundException(CUSTOMER_NOT_FOUND));
     }

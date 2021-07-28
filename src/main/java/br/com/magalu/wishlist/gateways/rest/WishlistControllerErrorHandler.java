@@ -20,15 +20,15 @@ public class WishlistControllerErrorHandler {
     private static final String PRODUCT_NOT_FOUND = "Product not found, check product ID.";
 
     @ExceptionHandler(value = {CustomerNotFoundException.class})
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    protected ApiErrorResponse customerNotFoundException(final Exception exception) {
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ApiErrorResponse customerNotFoundException(final RuntimeException exception) {
         log.error(exception.getLocalizedMessage());
         return ApiErrorResponse.builder().message(CUSTOMER_NOT_FOUND).build();
     }
 
     @ExceptionHandler(value = {ProductNotFoundException.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    protected ApiErrorResponse productNotFoundException(final Exception exception) {
+    protected ApiErrorResponse productNotFoundException(final RuntimeException exception) {
         log.error(exception.getLocalizedMessage());
         return ApiErrorResponse.builder().message(PRODUCT_NOT_FOUND).build();
     }
@@ -42,7 +42,7 @@ public class WishlistControllerErrorHandler {
 
     @ExceptionHandler(value = {MaximumLimitException.class})
     @ResponseStatus(HttpStatus.OK)
-    protected ApiErrorResponse maximuxLimiteException(final Exception exception) {
+    protected ApiErrorResponse maximuxLimiteException(final RuntimeException exception) {
         log.error(exception.getLocalizedMessage());
         return ApiErrorResponse.builder().message(LIMIT_ERROR_MESSAGE).build();
     }

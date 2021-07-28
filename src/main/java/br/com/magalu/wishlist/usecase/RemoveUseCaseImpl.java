@@ -28,6 +28,7 @@ public class RemoveUseCaseImpl implements RemoveUseCase {
 
     @Override
     public void execute(String customerId, Item item) {
+        log.info("execute : customerId : {} item : {}", customerId, item.toString());
         CustomerCollection customerCollection = getCustomer(customerId);
         ItemCollection itemToRemove = getItemCollection(item, customerCollection);
         customerCollection.getWishList().remove(itemToRemove);
@@ -36,6 +37,7 @@ public class RemoveUseCaseImpl implements RemoveUseCase {
     }
 
     private ItemCollection getItemCollection(Item item, CustomerCollection customerCollection) {
+        log.info("getItemCollection : item : {} , customerCollection : {}", item.toString(), customerCollection.toString());
         return Optional.ofNullable(customerCollection
                 .getWishList()
                 .stream()
@@ -44,6 +46,8 @@ public class RemoveUseCaseImpl implements RemoveUseCase {
     }
 
     private CustomerCollection getCustomer(String customerId) {
+        log.info("getCustomer : customerId {}", customerId);
+
         return Optional.ofNullable(mongoTemplate.findById(customerId, CustomerCollection.class))
                 .orElseThrow(() -> new CustomerNotFoundException(CUSTOMER_NOT_FOUND));
 

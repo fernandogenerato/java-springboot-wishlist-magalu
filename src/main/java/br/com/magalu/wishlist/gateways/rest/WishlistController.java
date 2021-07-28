@@ -2,19 +2,20 @@ package br.com.magalu.wishlist.gateways.rest;
 
 import br.com.magalu.wishlist.gateways.json.ApiResponse;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequestMapping("/default")
 public interface WishlistController {
-    @PostMapping(value = "/{customerId}/save")
+    @PostMapping(value = "/{customerId}/save", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     ApiResponse save(@PathVariable String customerId, @RequestBody ItemRest body);
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{customerId}/delete/{itemId}")
-    ApiResponse delete(@PathVariable String customerId,@PathVariable String itemId);
+    ApiResponse delete(@PathVariable String customerId, @PathVariable String itemId);
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{customerId}")
@@ -22,5 +23,5 @@ public interface WishlistController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{customerId}/verify/{itemId}")
-    ApiResponse<Boolean> verifyItemInWishlistById(@PathVariable String customerId,@PathVariable String itemId);
+    ApiResponse<Boolean> verifyItemInWishlistById(@PathVariable String customerId, @PathVariable String itemId);
 }
