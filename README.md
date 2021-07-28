@@ -1,6 +1,6 @@
 # Wishlist API
 
-Back-End Test.
+Wishlist REST API - Backend Technical Challenge
 
 ## Getting Started
 ### Prerequisites
@@ -35,7 +35,7 @@ Build the image
 ```
 docker build -t java-api .
 ```
-Build with no cache
+Build docker-compose with no cache
 ```
 docker-compose build --no-cache
 ```
@@ -43,3 +43,10 @@ Run docker compose
 ```
 docker-compose up
 ```
+Import the Postman collection
+```
+Magalu-WishlistAPI.postman_collection.json
+
+Verify the path : ~\wishlist\Magalu-WishlistAPI.postman_collection.json
+```
+

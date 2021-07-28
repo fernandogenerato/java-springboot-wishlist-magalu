@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "9b24bdc3-cd2d-4ed8-8389-190d83465310",
+		"name": "Magalu/WishlistAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Adicionar um produto na Wishlist do cliente",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product_id\": \"0ab044a8-ed5a-11eb-9a03-0242ac130003\",\r\n    \"title\": \"Smartphone Samsung Galaxy S20 FE 128GB Cloud Navy - 4G 6GB RAM Tela 6,5” Câm. Tripla + Selfie 32MP\",\r\n    \"image\": \"https://a-static.mlcdn.com.br/618x463/smartphone-samsung-galaxy-s20-fe-128gb-cloud-navy-4g-6gb-ram-tela-65-cam-tripla-selfie-32mp/magazineluiza/155629800/0007bbdc665749ec107d860c3a4b8b2f.jpg\",\r\n    \"price\": 2.36451\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/wishlist/{{client_id}}/save",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wishlist",
+						"{{client_id}}",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remover um produto da Wishlist do cliente",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/wishlist/{{client_id}}/delete/{{product_id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wishlist",
+						"{{client_id}}",
+						"delete",
+						"{{product_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar todos os produtos da Wishlist do cliente",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/wishlist/{{client_id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wishlist",
+						"{{client_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar se um determinado produto está na Wishlist do cliente",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/wishlist/{{client_id}}/verify/{{product_id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wishlist",
+						"{{client_id}}",
+						"verify",
+						"{{product_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "client_id",
+			"value": "e6ef0843-3394-4270-8844-ec50cc47ff46"
+		},
+		{
+			"key": "product_id",
+			"value": "0ab044a8-ed5a-11eb-9a03-0242ac130003"
+		}
+	]
+}
