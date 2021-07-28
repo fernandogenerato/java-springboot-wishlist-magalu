@@ -2,7 +2,6 @@
 
 Wishlist REST API - Backend Technical Challenge
 
-## Getting Started
 ### Prerequisites
 
 * Java 11 + 
@@ -43,10 +42,10 @@ Run docker compose
 ```
 docker-compose up
 ```
-Import the Postman collection
-```
-Magalu-WishlistAPI.postman_collection.json
+###Import the Postman collection
 
-Verify the path : ~\wishlist\Magalu-WishlistAPI.postman_collection.json
-```
+Name : Magalu-WishlistAPI.postman_collection.json
 
+Source : https://www.getpostman.com/collections/605a932694072fe3562d
+
+Check the path in the project : ~\wishlist\Magalu-WishlistAPI.postman_collection.json
