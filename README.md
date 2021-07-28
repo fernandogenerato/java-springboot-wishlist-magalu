@@ -18,9 +18,8 @@ git clone https://github.com/fernandogenerato/java-wishlist-magalu.git
 ```
 
 Go to the project folder
-
 ```
-cd wishlist
+cd java-wishlist-magalu/
 ```
 
 Build the project
