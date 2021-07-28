@@ -1,18 +1,20 @@
-version: '3.7'
+version: '3'
 services:
-  java-api:
+  mymongo:
+    image: mongo:latest
+    volumes:
+      - ./_data:/data/db
+    ports:
+      - 27017:27017
+      - 28017:28017
+  myapp:
     build:
       context: ./
       dockerfile: Dockerfile
+    environment:
+      - SERVER_PORT=8080
+      - MONGODB_URI=mongodb://mymongo:27017/mydb
+      - MONGODB_STATUS_HOST=mymongo
+      - MONGODB_STATUS_PORT=28017
     ports:
-      - "8081:8081"
-    container_name: java-api
-    links:
-      - mongo-db
-  mongo-db:
-    image: mongo
-    ports:
-      - "27017:27017"
-    container_name: mongo-db
-    volumes:
-      - ./db/:/data/db
+      - 8080:8080
