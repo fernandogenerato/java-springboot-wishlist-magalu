@@ -9,13 +9,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,27 +29,23 @@ class GetDetailsUseCaseImplTest {
 
     @Test
     void execute() {
-        CustomerCollection collection = new CustomerCollection();
-        ItemCollection itemCollection = new ItemCollection();
-        itemCollection.setProductId("0ab044a8-ed5a-11eb-9a03-0242ac130003");
-        itemCollection.setImage("test");
-        itemCollection.setPrice(300.00);
-        itemCollection.setTitle("batatinha");
         List<ItemCollection> list = new ArrayList<>();
-        list.add(itemCollection);
-        collection.setWishList(list);
-        when(mongoTemplate.findById(customerId, CustomerCollection.class)).thenReturn(collection);
-        Assertions.assertTrue(getDetailsUseCase.execute(customerId).size()>0);
-
+        list.add(ItemCollection.builder()
+                .productId("0ab044a8-ed5a-11eb-9a03-0242ac130003")
+                .image("test")
+                .price(2033.00)
+                .title("batatinha")
+                .build());
+        when(mongoTemplate.findById(customerId, CustomerCollection.class))
+                .thenReturn(CustomerCollection.builder().wishList(list).id("idtest").name("nametest").build());
+        Assertions.assertTrue(getDetailsUseCase.execute(customerId).size() > 0);
     }
 
     @Test
     void customerNotFoundTest() {
         CustomerNotFoundException thrown = assertThrows(
                 CustomerNotFoundException.class,
-                () -> getDetailsUseCase.execute(customerId),
-                "Expected doThing() to throw, but it didn't"
-        );
+                () -> getDetailsUseCase.execute(customerId));
         assertTrue(thrown.getMessage().contains("Customer not found, check customer ID"));
     }
 }

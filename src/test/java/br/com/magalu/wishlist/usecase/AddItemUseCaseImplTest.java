@@ -42,15 +42,12 @@ class AddItemUseCaseImplTest {
     void customerNotFoundTest() {
         CustomerNotFoundException thrown = assertThrows(
                 CustomerNotFoundException.class,
-                () -> addItemUseCase.execute(customerId, item),
-                "Expected doThing() to throw, but it didn't"
-        );
+                () -> addItemUseCase.execute(customerId, item));
         assertTrue(thrown.getMessage().contains("Customer not found, check customer ID"));
     }
 
     @Test
     void limitMaxWishlistErrorTest() {
-        CustomerCollection collection = new CustomerCollection();
         List<ItemCollection> list = new ArrayList<>();
         int count = 0;
         while (count < 20) {
@@ -59,25 +56,20 @@ class AddItemUseCaseImplTest {
             list.add(itemCollection);
             count++;
         }
-
-        collection.setWishList(list);
-        when(mongoTemplate.findById(customerId, CustomerCollection.class)).thenReturn(collection);
+        when(mongoTemplate.findById(customerId, CustomerCollection.class))
+                .thenReturn(CustomerCollection.builder().wishList(list).id("idtest").name("nametest").build());
         MaximumLimitException thrown = assertThrows(
                 MaximumLimitException.class,
-                () -> addItemUseCase.execute(customerId, item),
-                "Expected doThing() to throw, but it didn't"
-        );
+                () -> addItemUseCase.execute(customerId, item));
         assertTrue(thrown.getMessage().contains("Maximum Limit of 20 Products."));
-
     }
-
 
     @Test
     void testOK() {
         CustomerCollection collection = mock(CustomerCollection.class);
         when(mongoTemplate.findById(any(), any())).thenReturn(collection);
         addItemUseCase.execute(customerId, item);
-        verify(wishlistRepository,times(1)).save(collection);
+        verify(wishlistRepository, times(1)).save(collection);
 
     }
 }
