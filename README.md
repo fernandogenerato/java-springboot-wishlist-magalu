@@ -42,7 +42,7 @@ Run docker compose
 ```
 docker-compose up
 ```
-###Import the Postman collection
+### Import the Postman collection
 
 Name : Magalu-WishlistAPI.postman_collection.json
 
