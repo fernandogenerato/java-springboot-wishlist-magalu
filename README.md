@@ -18,9 +18,8 @@ git clone https://github.com/fernandogenerato/java-wishlist-magalu.git
 ```
 
 Go to the project folder
-
 ```
-cd wishlist
+cd java-wishlist-magalu/
 ```
 
 Build the project
@@ -42,7 +41,7 @@ Run docker compose
 ```
 docker-compose up
 ```
-###Import the Postman collection
+### Import the Postman collection
 
 Name : Magalu-WishlistAPI.postman_collection.json
 
