@@ -7,8 +7,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MockSetupConfig {
-
-
+    /**
+     *  Mocking 2 test clients to use the wish list API.
+     */
     @Bean
     public WishlistRepository setup(WishlistRepository repository) {
         CustomerCollection c1 = new CustomerCollection();
